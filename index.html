@@ -1263,12 +1263,62 @@
       margin-bottom: 2rem;
     }
 
+    /* ====== OUR BRANCHES HEADING ====== */
+    .branches-heading-wrapper {
+      text-align: center;
+      margin: 0 auto 2.5rem;
+      padding: 0 24px;
+      position: relative;
+    }
+
+    .branches-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--white);
+      opacity: 0.75;
+      margin-bottom: 1rem;
+    }
+
+    .branches-eyebrow::before,
+    .branches-eyebrow::after {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    }
+
+    .branches-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      color: var(--text-light);
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      margin-bottom: 0.8rem;
+      text-shadow: 0 0 40px rgba(255,255,255,0.12);
+    }
+
+    .branches-subtext {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+    }
+
     /* ====== LOCATION NAV — 3 button segmented pill ====== */
     .location-nav-wrapper {
       display: flex;
       justify-content: center;
       padding: 0 24px;
-      margin: 0 auto 2.5rem;
+      margin: 0 auto 1.8rem;
     }
 
     .location-nav-bar {
@@ -1336,6 +1386,111 @@
     .location-nav-btn:hover { color: rgba(240,240,240,0.85); }
     .location-nav-btn.active { color: #ffffff; }
     .location-nav-btn.active i { color: var(--white); }
+
+    /* ====== LOCATION PHOTO BANNER (NEW) ====== */
+    .location-photo-wrapper {
+      max-width: 1000px;
+      margin: 0 auto 3.5rem;
+      padding: 0 24px;
+      position: relative;
+    }
+
+    .location-photo-card {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: 480px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+      isolation: isolate;
+      background: #050505;
+    }
+
+    .location-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      opacity: 0;
+      transform: scale(1.06);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .location-photo.active {
+      opacity: 1;
+      transform: scale(1);
+      z-index: 2;
+    }
+
+    .location-photo-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.05) 35%, rgba(0,0,0,0.55) 75%, rgba(0,0,0,0.85) 100%);
+      z-index: 3;
+      pointer-events: none;
+      border-radius: 28px;
+    }
+
+    .location-photo-overlay {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 4;
+      padding: 32px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      pointer-events: none;
+    }
+
+    .location-photo-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 4px;
+      width: fit-content;
+    }
+
+    .location-photo-tag::before {
+      content: '';
+      width: 22px;
+      height: 1px;
+      background: rgba(255,255,255,0.7);
+    }
+
+    .location-photo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.6);
+    }
+
+    .location-photo-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.75);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      max-width: 500px;
+      line-height: 1.5;
+    }
 
     /* ====== LOCATION DESCRIPTION TEXT ====== */
     .location-description {
@@ -2961,11 +3116,17 @@
       .team-card { height: 480px; }
       .chef-tab-bar { max-width: 360px; }
 
-      .location-nav-wrapper { padding: 0 16px; margin-bottom: 2rem; }
+      .location-nav-wrapper { padding: 0 16px; margin-bottom: 1.5rem; }
       .location-nav-bar { max-width: 100%; padding: 0.4rem; }
       .location-nav-btn { padding: 0.75rem 0.6rem; font-size: 0.85rem; gap: 6px; }
       .location-nav-btn i { font-size: 0.8rem; }
       .location-nav-indicator { top: 0.4rem; bottom: 0.4rem; left: 0.4rem; }
+
+      .location-photo-wrapper { padding: 0 16px; margin-bottom: 2.5rem; }
+      .location-photo-card { border-radius: 22px; max-height: 380px; }
+      .location-photo-overlay { padding: 24px 24px; }
+      .location-photo-title { font-size: 1.6rem; }
+      .location-photo-subtitle { font-size: 0.85rem; }
 
       .location-description { padding: 0 16px; margin-bottom: 2.5rem; }
       .location-description p { font-size: 0.95rem; line-height: 1.75; }
@@ -3068,11 +3229,25 @@
       .team-grid { grid-template-columns: 1fr; gap: 1.5rem; padding: 0 16px; }
       .team-card { height: 440px; }
 
-      .location-nav-wrapper { padding: 0 12px; margin-bottom: 1.5rem; }
+      .branches-heading-wrapper { margin-bottom: 2rem; padding: 0 16px; }
+      .branches-heading { font-size: 2rem; margin-bottom: 0.6rem; }
+      .branches-subtext { font-size: 0.9rem; }
+      .branches-eyebrow { font-size: 0.6rem; letter-spacing: 3px; margin-bottom: 0.8rem; }
+      .branches-eyebrow::before,
+      .branches-eyebrow::after { width: 22px; }
+
+      .location-nav-wrapper { padding: 0 12px; margin-bottom: 1.3rem; }
       .location-nav-bar { padding: 0.35rem; gap: 0.15rem; }
       .location-nav-btn { padding: 0.7rem 0.4rem; font-size: 0.78rem; gap: 5px; }
       .location-nav-btn i { font-size: 0.72rem; }
       .location-nav-indicator { top: 0.35rem; bottom: 0.35rem; left: 0.35rem; }
+
+      .location-photo-wrapper { padding: 0 14px; margin-bottom: 2rem; }
+      .location-photo-card { border-radius: 20px; max-height: 300px; }
+      .location-photo-overlay { padding: 20px 20px; }
+      .location-photo-title { font-size: 1.35rem; }
+      .location-photo-subtitle { font-size: 0.78rem; }
+      .location-photo-tag { font-size: 0.6rem; letter-spacing: 2.5px; }
 
       .location-description { padding: 0 16px; margin-bottom: 2rem; }
       .location-description p { font-size: 0.9rem; line-height: 1.7; }
@@ -3166,9 +3341,19 @@
       .chef-content, .team-content { padding: 24px; }
       .chef-btn, .team-btn { padding: 14px; font-size: 0.95rem; }
 
+      .branches-heading { font-size: 1.75rem; }
+      .branches-subtext { font-size: 0.85rem; }
+
       .location-nav-wrapper { padding: 0 10px; }
       .location-nav-btn { padding: 0.65rem 0.3rem; font-size: 0.72rem; gap: 4px; }
       .location-nav-btn i { font-size: 0.68rem; }
+
+      .location-photo-wrapper { padding: 0 10px; }
+      .location-photo-card { max-height: 240px; border-radius: 18px; }
+      .location-photo-overlay { padding: 16px 16px; }
+      .location-photo-title { font-size: 1.15rem; }
+      .location-photo-subtitle { font-size: 0.72rem; }
+      .location-photo-tag { font-size: 0.55rem; letter-spacing: 2px; }
 
       .location-description p { font-size: 0.85rem; line-height: 1.65; }
 
@@ -3759,7 +3944,14 @@ html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
     <!-- CHEFS + TEAM SECTION -->
     <section class="chefs-section">
 
-      <!-- LOCATION NAV BAR — 3 button segmented pill (ABOVE Meet Our Chefs) -->
+      <!-- OUR BRANCHES HEADING -->
+      <div class="branches-heading-wrapper">
+        <div class="branches-eyebrow">Explore Our Kitchens</div>
+        <h2 class="branches-heading">Our Branches</h2>
+        <p class="branches-subtext">Three unique Copper Kitchen destinations across Kerala — each with its own flavour, character, and culinary team.</p>
+      </div>
+
+      <!-- LOCATION NAV BAR — 3 button segmented pill -->
       <div class="location-nav-wrapper">
         <div class="location-nav-bar" id="locationNavBar">
           <div class="location-nav-indicator" id="locationNavIndicator"></div>
@@ -3772,6 +3964,21 @@ html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
           <button class="location-nav-btn" data-location="wayanad" onclick="showLocation('wayanad')">
             <i class="fas fa-map-marker-alt"></i> Wayanad
           </button>
+        </div>
+      </div>
+
+      <!-- LOCATION PHOTO BANNER (NEW) -->
+      <div class="location-photo-wrapper">
+        <div class="location-photo-card">
+          <img id="locationPhoto-kozhikode" class="location-photo active" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1600&auto=format&fit=crop" alt="Copper Kitchen Kozhikode">
+          <img id="locationPhoto-thamarassery" class="location-photo" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop" alt="Copper Kitchen Thamarassery">
+          <img id="locationPhoto-wayanad" class="location-photo" src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1600&auto=format&fit=crop" alt="Copper Kitchen Wayanad">
+
+          <div class="location-photo-overlay">
+            <div class="location-photo-tag" id="locationPhotoTag">Kozhikode Branch</div>
+            <h3 class="location-photo-title" id="locationPhotoTitle">The City of Flavours</h3>
+            <p class="location-photo-subtitle" id="locationPhotoSubtitle">Where legendary biriyani and authentic Malabar taste meet modern dining.</p>
+          </div>
         </div>
       </div>
 
@@ -4789,6 +4996,25 @@ html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
       }
     }
 
+    // ====== LOCATION PHOTO DATA ======
+    const locationPhotos = {
+      kozhikode: {
+        tag: 'Kozhikode Branch',
+        title: 'The City of Flavours',
+        subtitle: 'Where legendary biriyani and authentic Malabar taste meet modern dining.'
+      },
+      thamarassery: {
+        tag: 'Thamarassery Branch',
+        title: 'Our Flagship Kitchen',
+        subtitle: 'The original home of Copper Kitchen — where our story first began in 2011.'
+      },
+      wayanad: {
+        tag: 'Wayanad Branch',
+        title: 'In the Hills of Wayanad',
+        subtitle: 'Where tribal flavours, bamboo cooking, and forest ingredients come together.'
+      }
+    };
+
     // ====== LOCATION SWITCHING ======
     function showLocation(location) {
       document.querySelectorAll('.location-content').forEach(content => {
@@ -4802,6 +5028,24 @@ html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
       });
       const targetSection = document.getElementById('locSection-' + location);
       if (targetSection) targetSection.classList.add('active');
+
+      // Switch photo
+      document.querySelectorAll('.location-photo').forEach(photo => {
+        photo.classList.remove('active');
+      });
+      const targetPhoto = document.getElementById('locationPhoto-' + location);
+      if (targetPhoto) targetPhoto.classList.add('active');
+
+      // Update photo overlay text
+      const meta = locationPhotos[location];
+      if (meta) {
+        const tagEl = document.getElementById('locationPhotoTag');
+        const titleEl = document.getElementById('locationPhotoTitle');
+        const subEl = document.getElementById('locationPhotoSubtitle');
+        if (tagEl) tagEl.textContent = meta.tag;
+        if (titleEl) titleEl.textContent = meta.title;
+        if (subEl) subEl.textContent = meta.subtitle;
+      }
 
       setTimeout(() => {
         initAllChefTabs();
