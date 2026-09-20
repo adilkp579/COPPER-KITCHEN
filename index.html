@@ -3296,6 +3296,34 @@ html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
 }
 
 </style>
+<style>
+
+/* Increase Chef's Specials product card height */
+@media (max-width: 600px) {
+  .chef-specials .product-card,
+  .chefs-specials .product-card,
+  .chef-specials .menu-card,
+  .chefs-specials .menu-card,
+  .specials-section .product-card,
+  .specials-section .menu-card,
+  #chefSpecials .product-card,
+  #chefSpecials .menu-card {
+    min-height: 390px !important;
+  }
+  .chef-specials .product-card img,
+  .chefs-specials .product-card img,
+  .chef-specials .menu-card img,
+  .chefs-specials .menu-card img,
+  .specials-section .product-card img,
+  .specials-section .menu-card img,
+  #chefSpecials .product-card img,
+  #chefSpecials .menu-card img {
+    height: 220px !important;
+    object-fit: cover !important;
+  }
+}
+
+</style>
 </head>
 <body>
 
@@ -3840,7 +3868,56 @@ html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
       </div>
     </section>
 
-    <section id="gallery" class="section">
+    
+    <!-- Frequently Asked Questions (added above guest testimonials) -->
+    <section class="guest-faq-section" aria-labelledby="guest-faq-title">
+      <div class="guest-faq-inner">
+        <p class="guest-faq-eyebrow">GOOD TO KNOW</p>
+        <h2 id="guest-faq-title">Frequently Asked Questions</h2>
+        <p class="guest-faq-intro">A few helpful answers before your visit.</p>
+        <div class="guest-faq-list">
+          <details class="guest-faq-item">
+            <summary>Where is Copper Kitchen located?</summary>
+            <p>We’re located in Thamarassery, Kerala. Please check the Contact section for directions and location details.</p>
+          </details>
+          <details class="guest-faq-item">
+            <summary>What kind of food do you serve?</summary>
+            <p>Our menu features Malabar and Kerala favourites, including biriyani and manthi, alongside other dishes.</p>
+          </details>
+          <details class="guest-faq-item">
+            <summary>Can I reserve a table in advance?</summary>
+            <p>Yes. Use the Reserve option on the website to make a reservation request.</p>
+          </details>
+          <details class="guest-faq-item">
+            <summary>Do you offer takeaway?</summary>
+            <p>Please contact our team to confirm current takeaway options and availability.</p>
+          </details>
+          <details class="guest-faq-item">
+            <summary>How can I contact Copper Kitchen?</summary>
+            <p>Use the Contact section on this website for the latest contact details.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <style>
+      .guest-faq-section{padding:clamp(42px,7vw,88px) 20px;background:#050505;color:#f5f1e8}
+      .guest-faq-inner{max-width:900px;margin:0 auto}
+      .guest-faq-eyebrow{margin:0 0 10px;color:#c99563;font-size:11px;font-weight:700;letter-spacing:.22em;text-align:center}
+      .guest-faq-section h2{margin:0;text-align:center;font-family:Georgia,serif;font-size:clamp(28px,5vw,46px);font-weight:500}
+      .guest-faq-intro{text-align:center;color:#aaa;margin:12px 0 30px;font-size:14px}
+      .guest-faq-list{display:grid;gap:12px}
+      .guest-faq-item{border:1px solid rgba(214,185,147,.25);border-radius:16px;background:linear-gradient(145deg,#111,#080808);overflow:hidden;transition:border-color .25s,transform .25s}
+      .guest-faq-item:hover{border-color:rgba(214,185,147,.65);transform:translateY(-2px)}
+      .guest-faq-item summary{cursor:pointer;list-style:none;padding:18px 52px 18px 20px;position:relative;font-weight:600;font-size:15px}
+      .guest-faq-item summary::-webkit-details-marker{display:none}
+      .guest-faq-item summary:after{content:"+";position:absolute;right:20px;top:50%;transform:translateY(-50%);color:#d2a16f;font-size:23px;font-weight:400}
+      .guest-faq-item[open] summary:after{content:"−"}
+      .guest-faq-item p{margin:0;padding:0 20px 20px;color:#bdb8b0;font-size:14px;line-height:1.75}
+      @media(max-width:600px){.guest-faq-section{padding:42px 16px}.guest-faq-item summary{padding:16px 44px 16px 16px;font-size:14px}.guest-faq-item p{padding:0 16px 17px;font-size:13px}}
+      @media(prefers-reduced-motion:reduce){.guest-faq-item{transition:none}.guest-faq-item:hover{transform:none}}
+    </style>
+
+<section id="gallery" class="section">
       <div class="container">
         <h2 class="section-title">Gallery</h2>
         <div class="gallery">
