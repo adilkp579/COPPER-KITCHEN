@@ -2753,6 +2753,18 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{display:non
 @media(max-width:600px){.chef-card-new,.team-card{height:520px}}
 @media(max-width:400px){.chef-card-new,.team-card{height:480px}}
 
+/* =====================================================
+   MENU PAGE — category bar stays pinned while items scroll
+   ===================================================== */
+/* body must not be its own scroll container, otherwise sticky can't work */
+body{overflow-x:clip !important;overflow-y:visible !important}
+@supports not (overflow:clip){body{overflow:visible !important}}
+.menu-items-page .filter-wrapper{position:sticky;top:84px;z-index:900;margin-bottom:2rem}
+@media(max-width:900px){
+  .menu-items-page .filter-wrapper{top:72px}
+  .menu-items-page .back-btn{position:static;background:rgba(255,255,255,.10);backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none}
+}
+
 /* ---------- reduced motion ---------- */
 @media(prefers-reduced-motion:reduce){
   .cs-blob-area .hero-layer.is-active{animation:none}
@@ -2970,7 +2982,7 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{display:non
       ['fade',  '.navbar-action-buttons, .footer-bottom'],
       ['up',    '.cs-card-wrapper, .featured-products-title, .featured-products-subtitle, .section-title, .chefs-title, .chefs-subtitle, ' +
                 '.menu-page-header, .branches-heading-wrapper, .our-story-header, .location-description, .location-nav-wrapper, ' +
-                '.location-photo-wrapper, .filter-wrapper, .chef-tab-bar, .v-card, .chef-card-new, .team-card, .story-step, ' +
+                '.location-photo-wrapper, #discover .filter-wrapper, .chef-tab-bar, .v-card, .chef-card-new, .team-card, .story-step, ' +
                 '.story-signature, .nibras-exp-card, .review-card, .guest-faq-eyebrow, .guest-faq-section h2, .guest-faq-intro, ' +
                 '.guest-faq-item, .footer-col']
     ];
