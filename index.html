@@ -2735,6 +2735,24 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{display:non
 .cs-hero::before{translate:0 calc(var(--hpn,0) * 70px)}
 .cs-dot{transition:width .6s var(--ease-spring),background .4s ease,box-shadow .4s ease}
 
+/* =====================================================
+   MOBILE ONLY — compact buttons
+   ===================================================== */
+@media(max-width:900px){
+  .navbar-action-buttons{justify-content:center;gap:.6rem;padding:1rem 14px}
+  .navbar-action-btn{flex:0 0 auto;padding:.85rem 1.3rem;min-height:46px;font-size:.72rem;font-weight:600;letter-spacing:.03em}
+  .chef-card-new,.team-card{height:580px}
+}
+@media(max-width:400px){
+  .navbar-action-btn{padding:.8rem 1.1rem;min-height:44px;font-size:.68rem}
+  .chef-card-new,.team-card{height:560px}
+}
+
+/* MOBILE ONLY — taller chef / team cards */
+@media(max-width:900px){.chef-card-new,.team-card{height:560px}}
+@media(max-width:600px){.chef-card-new,.team-card{height:520px}}
+@media(max-width:400px){.chef-card-new,.team-card{height:480px}}
+
 /* ---------- reduced motion ---------- */
 @media(prefers-reduced-motion:reduce){
   .cs-blob-area .hero-layer.is-active{animation:none}
