@@ -1655,9 +1655,11 @@
   <!-- MENU ITEMS PAGE -->
   <section id="menuItemsPage" class="page-section">
     <div class="container menu-items-page">
-      <button class="back-btn" onclick="showPage('homePage')"><i class="fas fa-arrow-left"></i> Back</button>
       <div class="menu-page-header">
-        <h2 class="menu-page-title">Our Menu</h2>
+        <div class="menu-title-row">
+          <button class="back-btn" onclick="showPage('homePage')"><i class="fas fa-arrow-left"></i> Back</button>
+          <h2 class="menu-page-title">Our Menu</h2>
+        </div>
         <p class="menu-page-desc">Explore our delicious offerings</p>
       </div>
       <div class="filter-wrapper">
@@ -2760,9 +2762,33 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{display:non
 body{overflow-x:clip !important;overflow-y:visible !important}
 @supports not (overflow:clip){body{overflow:visible !important}}
 .menu-items-page .filter-wrapper{position:sticky;top:84px;z-index:900;margin-bottom:2rem}
+/* Menu page Back button: sits at the very top, scrolls away with the content, returns when you scroll back up */
+.menu-items-page .back-btn{position:relative !important;top:auto !important;z-index:1;display:inline-flex;align-items:center;gap:8px;
+  margin:0 0 1.25rem;opacity:1;visibility:visible;
+  background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.06)) !important;
+  border:1px solid rgba(255,255,255,.4);color:#fff;padding:.65rem 1.4rem;font-size:.9rem;font-weight:600;
+  backdrop-filter:none !important;-webkit-backdrop-filter:none !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 8px 20px rgba(0,0,0,.35)}
+/* keep page content clear of the fixed header (the 600px/400px .container rule was zeroing the top padding) */
+.container.menu-items-page,.container.cart-page-container{padding-top:104px}
+@media(max-width:900px){.container.menu-items-page,.container.cart-page-container{padding-top:96px}}
+/* Reservation form: 16px fields stop iOS/Android from auto-zooming the page on focus */
+@media(max-width:900px),(pointer:coarse){
+  #reservationModal input,#reservationModal select,#reservationModal textarea{font-size:16px !important;touch-action:manipulation}
+}
+#reservationModal,#reservationModal .modal-box{touch-action:manipulation}
+
+/* no zoom while the reservation form is open */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+#reservationModal,#reservationModal .modal-box,#reservationModal input,#reservationModal select,#reservationModal textarea{touch-action:pan-y !important}
+#reservationModal input,#reservationModal select,#reservationModal textarea{font-size:16px !important;line-height:1.3}
+/* Back button sits beside the "Our Menu" title */
+.menu-title-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:.75rem;margin-bottom:.5rem}
+.menu-title-row .menu-page-title{margin:0;grid-column:2;text-align:center}
+.menu-title-row .back-btn{grid-column:1;justify-self:start;margin:0;padding:.55rem 1.1rem;font-size:.85rem;white-space:nowrap}
+@media(max-width:600px){.menu-title-row .back-btn{padding:.5rem .9rem;font-size:.78rem;gap:6px}}
 @media(max-width:900px){
   .menu-items-page .filter-wrapper{top:72px}
-  .menu-items-page .back-btn{position:static;background:rgba(255,255,255,.10);backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none}
 }
 
 /* ---------- reduced motion ---------- */
@@ -3196,6 +3222,18 @@ body{overflow-x:clip !important;overflow-y:visible !important}
         car.addEventListener('pointerleave', () => { main.style.setProperty('--ry', 0); main.style.setProperty('--tx', 0); });
       }
     }
+  })();
+
+
+  /* lock the viewport scale only while the reservation form is open (pinch-zoom works everywhere else) */
+  (function reserveNoZoom() {
+    const vp = document.querySelector('meta[name="viewport"]');
+    if (!vp || typeof window.openReservationModal !== 'function') return;
+    const NORMAL = vp.getAttribute('content');
+    const LOCKED = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover';
+    const open = window.openReservationModal, close = window.closeReservationModal;
+    window.openReservationModal = function () { vp.setAttribute('content', LOCKED); return open.apply(this, arguments); };
+    window.closeReservationModal = function () { vp.setAttribute('content', NORMAL); return close.apply(this, arguments); };
   })();
 
   /* re-measure the sliding pills once fonts/images have settled */
